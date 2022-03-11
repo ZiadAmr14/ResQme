@@ -36,7 +36,7 @@ public class CarService {
 
         return webClientBuilder.build()
                 .put()
-                .uri("https://resqme-60664-default-rtdb.firebaseio.com/Customer/"+ car.getCarID() +".json")
+                .uri("https://resqme-60664-default-rtdb.firebaseio.com/Cars/"+ car.getCarID() +".json")
                 .body(Mono.just(car), Car.class)
                 .retrieve()
                 .bodyToMono(Car.class)
