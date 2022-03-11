@@ -58,13 +58,7 @@ public class CustomerService {
         return webClientBuilder.build()
                 .put()
                 .uri("https://resqme-60664-default-rtdb.firebaseio.com/Customer/"+ customer.getUserId() +".json")
-                .body(Mono.just(webClientBuilder.build()
-                .put()
-                .uri("https://resqme-60664-default-rtdb.firebaseio.com/Customer/"+ customer.getUserId() +".json")
                 .body(Mono.just(customer), Customer.class)
-                .retrieve()
-                .bodyToMono(Customer.class)
-                .block()), Customer.class)
                 .retrieve()
                 .bodyToMono(Customer.class)
                 .block();
