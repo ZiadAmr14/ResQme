@@ -1,17 +1,22 @@
 package com.example.ResQmeAdmin.Service;
 
 import com.example.ResQmeAdmin.Model.Customer;
-import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.WriteResult;
-import com.google.firebase.cloud.FirestoreClient;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.firebase.database.*;
+import com.google.firebase.internal.NonNull;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @Service
@@ -19,6 +24,31 @@ public class CustomerService {
 
     @Autowired
     private WebClient.Builder webClientBuilder;
+
+
+    public ArrayList<Customer> getCustomers() throws JSONException, ExecutionException, InterruptedException {
+
+        String customers = new String();
+        customers = webClientBuilder.build()
+                .get()
+                .uri("https://resqme-60664-default-rtdb.firebaseio.com/Customer.json")
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
+
+        JSONObject obj = new JSONObject(customers);
+        Iterator<String> keys = obj.keys();
+        ArrayList<Customer> response = new ArrayList<>();
+        while(keys.hasNext()) {
+            String key = keys.next();
+            if (obj.get(key) instanceof JSONObject) {
+               response.add(getCustomer(key));
+            }
+        }
+
+        return response;
+
+    }
 
     public Customer addNewCustomer(Customer customer) throws ExecutionException, InterruptedException {
 
@@ -52,6 +82,8 @@ public class CustomerService {
         return "Done";
     }
 
+
+
     public Customer updateCustomer(Customer customer)
     {
 
@@ -64,4 +96,7 @@ public class CustomerService {
                 .block();
 
     }
+
+
+
 }

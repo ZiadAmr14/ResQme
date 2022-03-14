@@ -2,19 +2,17 @@ package com.example.ResQmeAdmin.Controller;
 
 import com.example.ResQmeAdmin.Model.Customer;
 import com.example.ResQmeAdmin.Service.CustomerService;
-//import com.example.ResQmeAdmin.Service.Firebase;
-import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
-import com.google.firebase.cloud.FirestoreClient;
+//import com.example.ResQmeAdmin.Repository.Firebase;
+import com.google.gson.JsonObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 @Controller
@@ -27,6 +25,12 @@ public class CustomerController {
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) throws ExecutionException, InterruptedException {
 
         return new ResponseEntity<Customer>(customerService.addNewCustomer(customer),HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/getCustomers")
+    public ResponseEntity<ArrayList<Customer>> getCustomers() throws JSONException, ExecutionException, InterruptedException {
+
+        return new ResponseEntity<>(customerService.getCustomers(),HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/getCustomer")
