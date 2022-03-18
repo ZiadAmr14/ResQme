@@ -35,17 +35,23 @@ public class CustomerService {
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
-
-        JSONObject obj = new JSONObject(customers);
-        Iterator<String> keys = obj.keys();
         ArrayList<Customer> response = new ArrayList<>();
-        while(keys.hasNext()) {
-            String key = keys.next();
-            if (obj.get(key) instanceof JSONObject) {
-               response.add(getCustomer(key));
+
+        try
+        {
+            JSONObject obj = new JSONObject(customers);
+            Iterator<String> keys = obj.keys();
+            while(keys.hasNext()) {
+                String key = keys.next();
+                if (obj.get(key) instanceof JSONObject) {
+                    response.add(getCustomer(key));
+                }
             }
         }
-
+        catch (Exception e)
+        {
+            System.out.println("No Customers");
+        }
         return response;
 
     }

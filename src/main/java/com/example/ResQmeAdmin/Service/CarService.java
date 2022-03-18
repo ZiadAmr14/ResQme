@@ -34,17 +34,25 @@ public class CarService {
                 .bodyToMono(String.class)
                 .block();
 
-        JSONObject obj = new JSONObject(cars);
-        Iterator<String> keys = obj.keys();
         ArrayList<Car> response = new ArrayList<>();
-        while(keys.hasNext()) {
-            String key = keys.next();
-            if (obj.get(key) instanceof JSONObject) {
-                if(((JSONObject) obj.get(key)).get("carStatus").toString().equals("Pending"))
-                {
-                    response.add(getCar(key));
+        try
+        {
+            JSONObject obj = new JSONObject(cars);
+            Iterator<String> keys = obj.keys();
+
+            while(keys.hasNext()) {
+                String key = keys.next();
+                if (obj.get(key) instanceof JSONObject) {
+                    if(((JSONObject) obj.get(key)).get("carStatus").toString().equals("Pending"))
+                    {
+                        response.add(getCar(key));
+                    }
                 }
             }
+        }
+        catch (Exception e)
+        {
+            System.out.println("No Cars");
         }
 
         return response;
