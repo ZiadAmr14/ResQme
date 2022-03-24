@@ -49,7 +49,7 @@ public class CmcService {
         }
         catch (Exception e)
         {
-            System.out.println("No Cars");
+            System.out.println("No Car Maintenance Centers");
         }
 
         return response;

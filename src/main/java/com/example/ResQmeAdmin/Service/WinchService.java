@@ -53,7 +53,7 @@ public class WinchService {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+           System.out.println("No Winches Available");
         }
 
         return response;
