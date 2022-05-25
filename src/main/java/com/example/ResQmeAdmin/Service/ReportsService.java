@@ -53,7 +53,7 @@ public class ReportsService {
         return  response;
     }
 
-    private Report getReport(String reportID)
+    public Report getReport(String reportID)
     {
         Report report = webClientBuilder.build()
                 .get()

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 @RestController
+@CrossOrigin
 public class CarController {
 
     @Autowired
@@ -24,6 +25,10 @@ public class CarController {
     @GetMapping("/getCars")
     public ResponseEntity<ArrayList<Car>> getCars() throws ExecutionException, InterruptedException, JSONException {
         return new ResponseEntity<>(carService.getCars(), HttpStatus.CREATED);
+    }
+    @GetMapping("/getCar")
+    public ResponseEntity<Car> getCar(@RequestParam String carID) throws ExecutionException, InterruptedException, JSONException {
+        return new ResponseEntity<>(carService.getCar(carID), HttpStatus.CREATED);
     }
 
     @PutMapping("/updateCar")

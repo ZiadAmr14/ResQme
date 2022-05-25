@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 @Controller
+@CrossOrigin
 public class CustomerController {
 
     @Autowired

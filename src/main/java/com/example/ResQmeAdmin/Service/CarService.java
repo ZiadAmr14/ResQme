@@ -58,7 +58,7 @@ public class CarService {
         return response;
     }
 
-    private Car getCar(String carID) throws ExecutionException, InterruptedException {
+    public Car getCar(String carID) throws ExecutionException, InterruptedException {
         Car car = webClientBuilder.build()
                 .get()
                 .uri("https://resqme-60664-default-rtdb.firebaseio.com/Cars/"+ carID +".json")

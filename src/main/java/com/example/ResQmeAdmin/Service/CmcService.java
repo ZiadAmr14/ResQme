@@ -54,7 +54,7 @@ public class CmcService {
 
         return response;
     }
-    private CMC getCMC(String cmcID) throws ExecutionException, InterruptedException {
+    public CMC getCMC(String cmcID) throws ExecutionException, InterruptedException {
         CMC cmc = webClientBuilder.build()
                 .get()
                 .uri("https://resqme-60664-default-rtdb.firebaseio.com/CMCs/"+ cmcID +".json")

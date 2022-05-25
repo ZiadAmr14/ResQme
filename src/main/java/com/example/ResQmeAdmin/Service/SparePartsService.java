@@ -53,7 +53,7 @@ public class SparePartsService {
         return response;
     }
 
-    private SparePart getSparePart(String sparePartID) throws ExecutionException, InterruptedException {
+    public SparePart getSparePart(String sparePartID) throws ExecutionException, InterruptedException {
         SparePart sparePart = webClientBuilder.build()
                 .get()
                 .uri("https://resqme-60664-default-rtdb.firebaseio.com/SpareParts/"+ sparePartID +".json")

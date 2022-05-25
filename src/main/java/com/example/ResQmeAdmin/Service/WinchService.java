@@ -18,7 +18,7 @@ public class WinchService {
     @Autowired
     private WebClient.Builder webClientBuilder;
 
-    private Winch getWinch(String winchID)
+    public Winch getWinch(String winchID)
     {
         Winch winch = webClientBuilder.build()
                 .get()
