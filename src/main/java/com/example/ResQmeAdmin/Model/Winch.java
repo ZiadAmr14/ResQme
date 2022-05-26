@@ -6,11 +6,13 @@ public class Winch {
     private String winchAddress;
     private String winchAvailability;
     private String winchCostPerKM;
-    private String winchCurrentLocation;
+    private String winchCurrentLat;
+    private String winchCurrentLong;
     private String winchID;
     private String winchLicence;
     private String winchName;
     private String winchOwnerID;
+    private String winchOwnerRate;
     private String winchStatus;
 
     public String getDriverLicence() {
@@ -45,12 +47,28 @@ public class Winch {
         this.winchCostPerKM = winchCostPerKM;
     }
 
-    public String getWinchCurrentLocation() {
-        return winchCurrentLocation;
+    public String getWinchCurrentLat() {
+        return winchCurrentLat;
     }
 
-    public void setWinchCurrentLocation(String winchCurrentLocation) {
-        this.winchCurrentLocation = winchCurrentLocation;
+    public void setWinchCurrentLat(String winchCurrentLat) {
+        this.winchCurrentLat = winchCurrentLat;
+    }
+
+    public String getWinchCurrentLong() {
+        return winchCurrentLong;
+    }
+
+    public void setWinchCurrentLong(String winchCurrentLong) {
+        this.winchCurrentLong = winchCurrentLong;
+    }
+
+    public String getWinchOwnerRate() {
+        return winchOwnerRate;
+    }
+
+    public void setWinchOwnerRate(String winchOwnerRate) {
+        this.winchOwnerRate = winchOwnerRate;
     }
 
     public String getWinchID() {
