@@ -42,6 +42,10 @@ public class ReportsService {
                     {
                         response.add(getReport(key));
                     }
+                    if(((JSONObject) object.get(key)).get("reportStatus").toString().equals("REPLY_REPORT_PENDING"))
+                    {
+                        response.add(getReport(key));
+                    }
                 }
             }
 
